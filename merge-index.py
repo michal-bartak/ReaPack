@@ -13,6 +13,7 @@ their own repository, so nothing needs rewriting here.
 """
 
 import html
+import posixpath
 import re
 import sys
 import urllib.request
@@ -53,10 +54,26 @@ def restore_cdata(xml):
     return CDATA_TAGS.sub(repl, xml)
 
 
+# reapack-index enforces that no two packages install the same file, but only
+# within one repository. Ours live in separate repositories indexed
+# independently, so a clash between them is invisible to it and would surface
+# as a failed install. ReaPack's registry declares files.path UNIQUE.
+def install_paths(category, package):
+    """Every path this package writes into REAPER's resource directory."""
+    pkg_type = package.get("type")
+    for version in package.findall("version"):
+        for src in version.findall("source"):
+            target = src.get("file") or package.get("name")
+            kind = src.get("type") or pkg_type
+            base = "Data" if kind == "data" else posixpath.join("Scripts", category)
+            yield posixpath.normpath(posixpath.join(base, target))
+
+
 def merge(sources):
     root = ET.Element("index", {"version": "1", "name": INDEX_NAME})
     categories = {}                           # name -> <category>, insertion ordered
     seen = {}                                 # (category, package) -> source url
+    installs = {}                             # install path -> (category, package)
 
     for url in sources:
         src = ET.fromstring(fetch(url))
@@ -81,6 +98,19 @@ def merge(sources):
                         f"  first seen in {seen[key]}\n"
                         f"  also present in {url}")
                 seen[key] = url
+
+                for path in install_paths(name, package):
+                    owner = installs.get(path)
+                    if owner and owner != key:
+                        raise SystemExit(
+                            f"two packages install the same file: {path}\n"
+                            f"  {owner[0]}/{owner[1]}\n"
+                            f"  {key[0]}/{key[1]} (from {url})\n"
+                            "ReaPack gives each package exclusive ownership of "
+                            "its files; retarget one of them into its own "
+                            "subdirectory.")
+                    installs[path] = key
+
                 target.append(package)
 
     if not seen:
