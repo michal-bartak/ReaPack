@@ -23,7 +23,7 @@ from pathlib import Path
 INDEX_NAME = "MXM Scripts"
 
 SOURCES = [
-    "https://raw.githubusercontent.com/michal-bartak/ReaColorizer/main/index.xml",
+    "https://raw.githubusercontent.com/michal-bartak/Reaper-AutoColor/main/index.xml",
     "https://raw.githubusercontent.com/michal-bartak/ListOfInstrumentsAndEffects/main/index.xml",
 ]
 

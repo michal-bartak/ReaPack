@@ -18,7 +18,7 @@ Updates arrive through ReaPack from then on.
 
 | Package | What it does | Source |
 |---|---|---|
-| **Name Colorizer** | Colours tracks, items, regions and markers from their names, using substring, glob or real regular expressions. | [ReaColorizer](https://github.com/michal-bartak/ReaColorizer) |
+| **AutoColor** | Colours tracks, items, regions and markers from their names, using substring, glob or real regular expressions. | [Reaper-AutoColor](https://github.com/michal-bartak/Reaper-AutoColor) |
 | **List of Instruments and Effects** | Lists every plugin used in a project, grouped into categories, and copies the report out as text, Markdown or BBCode. | [ListOfInstrumentsAndEffects](https://github.com/michal-bartak/ListOfInstrumentsAndEffects) |
 
 ## How this repository works
