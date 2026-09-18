@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<index version="1" name="MXM Scripts">
+  <category name="NameColorizer">
+    <reapack name="MXM_NameColorizer.lua" type="script" desc="Name Colorizer">
+      <metadata>
+        <description><![CDATA[{\rtf1\ansi\deff0{\fonttbl{\f0 \fswiss Helvetica;}{\f1 \fmodern Courier;}}
+{\colortbl;\red255\green0\blue0;\red0\green0\blue255;}
+\widowctrl\hyphauto
+
+{\pard \ql \f0 \fs24 \sa180 \li0 \fi0 \outlinelevel0 \b \fs34 Name Colorizer\par}
+{\pard \ql \f0 \fs24 \sa180 \li0 \fi0 Colour tracks, items, regions and markers from their {\b names}, using plain substring, glob, or {\b real regular expressions}.\par}
+{\pard \ql \f0 \fs24 \sa180 \li0 \fi0 One ordered rule list per object kind -- Tracks, Items, Regions, Markers -- and within a kind the first rule that matches wins, so precedence works like firewall rules. Reordering track rules can never change which region wins.\par}
+{\pard \ql \f0 \fs24 \sa180 \li0 \fi0 The configuration window needs ReaImGui 0.10+. Every other action, including Apply and Clear, works without it.\par}
+{\pard \ql \f0 \fs24 \sa180 \li0 \fi0 MIT licensed. Source: {\field{\*\fldinst{HYPERLINK "https://github.com/michal-bartak/ReaColorizer"}}{\fldrslt{\ul
+https://github.com/michal-bartak/ReaColorizer
+}}}
+\par}
+}
+]]></description>
+        <link rel="website" href="https://github.com/michal-bartak/ReaColorizer">GitHub</link>
+      </metadata>
+      <version name="1.0.0" author="Michal MaXyM Bartak" time="2026-09-18T12:10:16Z">
+        <changelog><![CDATA[Initial ReaPack release]]></changelog>
+        <source main="main" file="./MXM_NameColorizer_ApplyAll.lua">https://github.com/michal-bartak/ReaColorizer/raw/ca18d18ea1289a939a7752f9035b3813c85dce38/Reaper/Scripts/MXM_NameColorizer/MXM_NameColorizer_ApplyAll.lua</source>
+        <source main="main" file="./MXM_NameColorizer_ApplySelection.lua">https://github.com/michal-bartak/ReaColorizer/raw/ca18d18ea1289a939a7752f9035b3813c85dce38/Reaper/Scripts/MXM_NameColorizer/MXM_NameColorizer_ApplySelection.lua</source>
+        <source main="main" file="./MXM_NameColorizer_AutoToggle.lua">https://github.com/michal-bartak/ReaColorizer/raw/ca18d18ea1289a939a7752f9035b3813c85dce38/Reaper/Scripts/MXM_NameColorizer/MXM_NameColorizer_AutoToggle.lua</source>
+        <source main="main" file="./MXM_NameColorizer_ClearColors.lua">https://github.com/michal-bartak/ReaColorizer/raw/ca18d18ea1289a939a7752f9035b3813c85dce38/Reaper/Scripts/MXM_NameColorizer/MXM_NameColorizer_ClearColors.lua</source>
+        <source main="main" file="./MXM_NameColorizer_Dump.lua">https://github.com/michal-bartak/ReaColorizer/raw/ca18d18ea1289a939a7752f9035b3813c85dce38/Reaper/Scripts/MXM_NameColorizer/MXM_NameColorizer_Dump.lua</source>
+        <source main="main" file="./MXM_NameColorizer_GUI.lua">https://github.com/michal-bartak/ReaColorizer/raw/ca18d18ea1289a939a7752f9035b3813c85dce38/Reaper/Scripts/MXM_NameColorizer/MXM_NameColorizer_GUI.lua</source>
+        <source main="main" file="./MXM_NameColorizer_RunTests.lua">https://github.com/michal-bartak/ReaColorizer/raw/ca18d18ea1289a939a7752f9035b3813c85dce38/Reaper/Scripts/MXM_NameColorizer/MXM_NameColorizer_RunTests.lua</source>
+        <source main="main" file="./MXM_NameColorizer_WhyThisColour.lua">https://github.com/michal-bartak/ReaColorizer/raw/ca18d18ea1289a939a7752f9035b3813c85dce38/Reaper/Scripts/MXM_NameColorizer/MXM_NameColorizer_WhyThisColour.lua</source>
+        <source file="lib/apply.lua">https://github.com/michal-bartak/ReaColorizer/raw/ca18d18ea1289a939a7752f9035b3813c85dce38/Reaper/Scripts/MXM_NameColorizer/lib/apply.lua</source>
+        <source file="lib/autoloop.lua">https://github.com/michal-bartak/ReaColorizer/raw/ca18d18ea1289a939a7752f9035b3813c85dce38/Reaper/Scripts/MXM_NameColorizer/lib/autoloop.lua</source>
+        <source file="lib/colors.lua">https://github.com/michal-bartak/ReaColorizer/raw/ca18d18ea1289a939a7752f9035b3813c85dce38/Reaper/Scripts/MXM_NameColorizer/lib/colors.lua</source>
+        <source file="lib/config.lua">https://github.com/michal-bartak/ReaColorizer/raw/ca18d18ea1289a939a7752f9035b3813c85dce38/Reaper/Scripts/MXM_NameColorizer/lib/config.lua</source>
+        <source file="lib/entry.lua">https://github.com/michal-bartak/ReaColorizer/raw/ca18d18ea1289a939a7752f9035b3813c85dce38/Reaper/Scripts/MXM_NameColorizer/lib/entry.lua</source>
+        <source file="lib/json.lua">https://github.com/michal-bartak/ReaColorizer/raw/ca18d18ea1289a939a7752f9035b3813c85dce38/Reaper/Scripts/MXM_NameColorizer/lib/json.lua</source>
+        <source file="lib/matcher.lua">https://github.com/michal-bartak/ReaColorizer/raw/ca18d18ea1289a939a7752f9035b3813c85dce38/Reaper/Scripts/MXM_NameColorizer/lib/matcher.lua</source>
+        <source file="lib/predicates.lua">https://github.com/michal-bartak/ReaColorizer/raw/ca18d18ea1289a939a7752f9035b3813c85dce38/Reaper/Scripts/MXM_NameColorizer/lib/predicates.lua</source>
+        <source file="lib/regex.lua">https://github.com/michal-bartak/ReaColorizer/raw/ca18d18ea1289a939a7752f9035b3813c85dce38/Reaper/Scripts/MXM_NameColorizer/lib/regex.lua</source>
+        <source file="lib/rules.lua">https://github.com/michal-bartak/ReaColorizer/raw/ca18d18ea1289a939a7752f9035b3813c85dce38/Reaper/Scripts/MXM_NameColorizer/lib/rules.lua</source>
+        <source file="lib/targets.lua">https://github.com/michal-bartak/ReaColorizer/raw/ca18d18ea1289a939a7752f9035b3813c85dce38/Reaper/Scripts/MXM_NameColorizer/lib/targets.lua</source>
+        <source file="lib/gui/app.lua">https://github.com/michal-bartak/ReaColorizer/raw/ca18d18ea1289a939a7752f9035b3813c85dce38/Reaper/Scripts/MXM_NameColorizer/lib/gui/app.lua</source>
+        <source file="lib/gui/preview.lua">https://github.com/michal-bartak/ReaColorizer/raw/ca18d18ea1289a939a7752f9035b3813c85dce38/Reaper/Scripts/MXM_NameColorizer/lib/gui/preview.lua</source>
+        <source file="lib/gui/rule_table.lua">https://github.com/michal-bartak/ReaColorizer/raw/ca18d18ea1289a939a7752f9035b3813c85dce38/Reaper/Scripts/MXM_NameColorizer/lib/gui/rule_table.lua</source>
+        <source file="lib/gui/theme.lua">https://github.com/michal-bartak/ReaColorizer/raw/ca18d18ea1289a939a7752f9035b3813c85dce38/Reaper/Scripts/MXM_NameColorizer/lib/gui/theme.lua</source>
+        <source file="lib/gui/window.lua">https://github.com/michal-bartak/ReaColorizer/raw/ca18d18ea1289a939a7752f9035b3813c85dce38/Reaper/Scripts/MXM_NameColorizer/lib/gui/window.lua</source>
+        <source type="data" file="toolbar_icons/mxm_toolbar_reacolorizer.png">https://github.com/michal-bartak/ReaColorizer/raw/ca18d18ea1289a939a7752f9035b3813c85dce38/Reaper/Data/toolbar_icons/mxm_toolbar_reacolorizer.png</source>
+        <source type="data" file="toolbar_icons/150/mxm_toolbar_reacolorizer.png">https://github.com/michal-bartak/ReaColorizer/raw/ca18d18ea1289a939a7752f9035b3813c85dce38/Reaper/Data/toolbar_icons/150/mxm_toolbar_reacolorizer.png</source>
+        <source type="data" file="toolbar_icons/200/mxm_toolbar_reacolorizer.png">https://github.com/michal-bartak/ReaColorizer/raw/ca18d18ea1289a939a7752f9035b3813c85dce38/Reaper/Data/toolbar_icons/200/mxm_toolbar_reacolorizer.png</source>
+      </version>
+    </reapack>
+  </category>
+  <category name="InstrumentList">
+    <reapack name="MXM_List of Instruments and Effects.lua" type="script" desc="List of Instruments and Effects">
+      <metadata>
+        <description><![CDATA[{\rtf1\ansi\deff0{\fonttbl{\f0 \fswiss Helvetica;}{\f1 \fmodern Courier;}}
+{\colortbl;\red255\green0\blue0;\red0\green0\blue255;}
+{\*\listtable{\list\listtemplateid1{\listlevel\levelnfc23\levelnfcn23\leveljc0\leveljcn0\levelfollow0\levelstartat1\levelindent0{\leveltext\'01\u8226 ?;}{\levelnumbers;}\fi-360\li360\lin360 }{\listname ;}\listid1}
+}
+{\*\listoverridetable{\listoverride\listid1\listoverridecount0\ls1}}
+\widowctrl\hyphauto
+
+{\pard \ql \f0 \fs24 \sa180 \li0 \fi0 \outlinelevel0 \b \fs34 List of Instruments and Effects\par}
+{\pard \ql \f0 \fs24 \sa180 \li0 \fi0 Lists all REAPER plugins used in an active project, grouping them into categories. The motivation comes from the KVR One Synth Challenge competition, which requires providing technical details of the production.\par}
+{\pard \ql \f0 \fs24 \sa180 \li0 \fi0 Results appear in the window immediately, with buttons to copy them to the clipboard in several formats:\par}
+{\pard \ql \f0 \fs24 \sa0 \li360 \fi-360\ls1\ilvl0\tx360 {\listtext\tab \bullet \tab} {\b plain text} -- the text shown in the preview window\par}
+{\pard \ql \f0 \fs24 \sa0 \li360 \fi-360\ls1\ilvl0\tx360 {\listtext\tab \bullet \tab} {\b markdown} -- results formatted into tables\par}
+{\pard \ql \f0 \fs24 \sa0 \li360 \fi-360\ls1\ilvl0\tx360 {\listtext\tab \bullet \tab} {\b BB plain} -- some BBCode formatting, such as bold\par}
+{\pard \ql \f0 \fs24 \sa0 \li360 \fi-360\ls1\ilvl0\tx360 {\listtext\tab \bullet \tab} {\b BB code} -- wrapped in {\f1 \fs24 [CODE]} tags to force a fixed-width font\sa180\par}
+{\pard \ql \f0 \fs24 \sa180 \li0 \fi0 Every press of a Copy button regenerates the report, refreshing what is displayed. Normally the window shows plain text whichever export format is selected; tick {\f1 \fs24 debug} to make it show exactly what goes to the clipboard.\par}
+{\pard \ql \f0 \fs24 \sa180 \li0 \fi0 Requires {\b Lokasenna's GUI library v2 for Lua}, available on ReaPack. After installing it, run {\i Set Lokasenna_GUI v2 library path.lua} once from the Action List.\par}
+{\pard \ql \f0 \fs24 \sa180 \li0 \fi0 Written and tested in REAPER 7.x; it may work in earlier versions. GPL v3.\par}
+}
+]]></description>
+        <link rel="website" href="https://github.com/michal-bartak/ListOfInstrumentsAndEffects">GitHub</link>
+        <link rel="screenshot">https://raw.githubusercontent.com/michal-bartak/ListOfInstrumentsAndEffects/main/images/List_of_Instruments_and_Effects.png</link>
+      </metadata>
+      <version name="2.0" author="Michal MaXyM Bartak" time="2026-09-18T11:40:34Z">
+        <changelog><![CDATA[Added GUI with export to various formats]]></changelog>
+        <source main="main">https://github.com/michal-bartak/ListOfInstrumentsAndEffects/raw/5e831b8f935b2807c7198b74ed3cc698b925d938/InstrumentList/MXM_List%20of%20Instruments%20and%20Effects.lua</source>
+      </version>
+    </reapack>
+  </category>
+</index>
