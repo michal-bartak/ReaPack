@@ -38,6 +38,19 @@ their own repository, so nothing is rewritten and no file is duplicated here.
 ./merge-index.py --check  # verify index.xml is current; exits non-zero if not
 ```
 
+**A source repository cutting a version does not reach anyone until this runs.**
+ReaPack clients import the merged index from *this* repository; the per-repo
+indexes are only inputs. So publishing is two steps, in two repositories.
+
+The **Merge index** workflow (Actions -> Merge index -> Run workflow) does it on
+demand: it regenerates `index.xml`, pushes only if it changed, and then verifies
+the result with `--check`. It also runs weekly as a safety net for forgetting.
+
+A source repository can trigger it directly instead, with a
+`repository_dispatch` of type `reapack-index-updated`. That needs a PAT with
+`contents:write` on this repository held as a secret over there -- a source
+repo's own `GITHUB_TOKEN` cannot reach across.
+
 Adding a script means adding its repository to `SOURCES` in `merge-index.py`
 and re-running it. Duplicate packages across repositories are a hard error.
 
