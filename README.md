@@ -30,6 +30,8 @@ is maintained next to the code it describes — never here.
 Every source repository runs [`reapack-index`](https://github.com/cfillion/reapack-index)
 itself and publishes its own `index.xml`. `merge-index.py` then fetches those
 and re-roots each `<category>` under a single `<index name="MXM Scripts">`.
+Each repository is read from `main` and from its newest version tag, to publish
+a pre-release tagged on a branch before it reaches `main`.
 The download URLs inside a generated index are already absolute and point at
 their own repository, so nothing is rewritten and no file is duplicated here.
 
