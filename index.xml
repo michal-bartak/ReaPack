@@ -8,10 +8,10 @@
 \widowctrl\hyphauto
 
 {\pard \ql \f0 \fs24 \sa180 \li0 \fi0 \outlinelevel0 \b \fs34 AutoColor\par}
-{\pard \ql \f0 \fs24 \sa180 \li0 \fi0 Colour tracks, items, regions and markers from their {\b names}, using plain substring, glob, or {\b real regular expressions}.\par}
-{\pard \ql \f0 \fs24 \sa180 \li0 \fi0 One ordered rule list per object kind -- Tracks, Items, Regions, Markers -- and within a kind the first rule that matches wins, so precedence works like firewall rules. Reordering track rules can never change which region wins.\par}
-{\pard \ql \f0 \fs24 \sa180 \li0 \fi0 The configuration window needs ReaImGui 0.10+. Every other action, including Apply and Clear, works without it.\par}
-{\pard \ql \f0 \fs24 \sa180 \li0 \fi0 Your rules live in {\f1 \fs24 MXM_AutoColor/config.json} under REAPER's resource path, outside Scripts/, so updating or reinstalling never touches them.\par}
+{\pard \ql \f0 \fs24 \sa180 \li0 \fi0 Colours tracks, items, regions and markers, and sets track icons, from their {\b names}: plain substring, glob or {\b regular expression}.\par}
+{\pard \ql \f0 \fs24 \sa180 \li0 \fi0 Each object type configured by separate set of rules. Within a set the first matching rule wins.\par}
+{\pard \ql \f0 \fs24 \sa180 \li0 \fi0 The configuration window requires ReaImGui 0.10+.\par}
+{\pard \ql \f0 \fs24 \sa180 \li0 \fi0 Config file stored in {\f1 \fs24 MXM_AutoColor/config.json} under the REAPER resource path, outside Scripts/, to prevent overwriting on update.\par}
 {\pard \ql \f0 \fs24 \sa180 \li0 \fi0 MIT licensed. Source: {\field{\*\fldinst{HYPERLINK "https://github.com/michal-bartak/Reaper-AutoColor"}}{\fldrslt{\ul
 https://github.com/michal-bartak/Reaper-AutoColor
 }}}
@@ -21,7 +21,7 @@ https://github.com/michal-bartak/Reaper-AutoColor
         <link rel="website" href="https://github.com/michal-bartak/Reaper-AutoColor">GitHub</link>
       </metadata>
       <version name="0.9.0" author="Michal MaXyM Bartak" time="2026-09-19T22:09:23Z">
-        <changelog><![CDATA[Initial ReaPack release]]></changelog>
+        <changelog><![CDATA[Initial ReaPack release.]]></changelog>
         <source main="main" file="MXM_AutoColor/MXM_AutoColor_GUI.lua">https://github.com/michal-bartak/Reaper-AutoColor/raw/b6732203aa9982e78487a08d6890f3ed2eaf46bf/Reaper/Scripts/MXM_AutoColor/MXM_AutoColor_GUI.lua</source>
         <source main="main" file="MXM_AutoColor/MXM_AutoColor_AutoToggle.lua">https://github.com/michal-bartak/Reaper-AutoColor/raw/b6732203aa9982e78487a08d6890f3ed2eaf46bf/Reaper/Scripts/MXM_AutoColor/MXM_AutoColor_AutoToggle.lua</source>
         <source file="MXM_AutoColor/MXM_AutoColor_ApplyAll.lua">https://github.com/michal-bartak/Reaper-AutoColor/raw/b6732203aa9982e78487a08d6890f3ed2eaf46bf/Reaper/Scripts/MXM_AutoColor/MXM_AutoColor_ApplyAll.lua</source>
@@ -55,15 +55,11 @@ https://github.com/michal-bartak/Reaper-AutoColor
         <source type="data" file="toolbar_icons/200/mxm_toolbar_autocolor_gui.png">https://github.com/michal-bartak/Reaper-AutoColor/raw/b6732203aa9982e78487a08d6890f3ed2eaf46bf/Reaper/Data/toolbar_icons/200/mxm_toolbar_autocolor_gui.png</source>
       </version>
       <version name="0.9.1" author="Michal MaXyM Bartak" time="2026-09-20T07:50:46Z">
-        <changelog><![CDATA[Options dialog no longer closes when REAPER loses focus, and no longer
-flickers when you click elsewhere. It is always on top, dismissed with
-Escape, its Close button, or a click on the window behind.
-New About dialog: version, links, author, licence.
-Text size is capped at 20 and applied when the slider is released.
-"Example rules" (was "Replace with the starter rules") is joined by
-"Remove Rules", which empties every tab.
-The pattern tester's right edge lines up with the table above it again.
-The pattern tester's mode buttons are drawn as one divided control.]]></changelog>
+        <changelog><![CDATA[- Options dialog stays open when REAPER loses focus, without flicker.
+- About dialog: version, links, author, licence.
+- Text size capped at 20, applied on slider release.
+- "Example rules" and "Remove Rules" buttons.
+- Pattern tester layout fixes.]]></changelog>
         <source main="main" file="MXM_AutoColor/MXM_AutoColor_GUI.lua">https://github.com/michal-bartak/Reaper-AutoColor/raw/0.9.1/Reaper/Scripts/MXM_AutoColor/MXM_AutoColor_GUI.lua</source>
         <source main="main" file="MXM_AutoColor/MXM_AutoColor_AutoToggle.lua">https://github.com/michal-bartak/Reaper-AutoColor/raw/0.9.1/Reaper/Scripts/MXM_AutoColor/MXM_AutoColor_AutoToggle.lua</source>
         <source file="MXM_AutoColor/MXM_AutoColor_ApplyAll.lua">https://github.com/michal-bartak/Reaper-AutoColor/raw/0.9.1/Reaper/Scripts/MXM_AutoColor/MXM_AutoColor_ApplyAll.lua</source>
@@ -99,20 +95,16 @@ The pattern tester's mode buttons are drawn as one divided control.]]></changelo
       <version name="1.0.0" author="Michal MaXyM Bartak" time="2026-09-21T09:39:52Z">
         <changelog><![CDATA[First public release.
 
-Colour tracks, items, regions and markers from their names -- plain
-substring, glob, or real regular expressions. One ordered rule list per
-object kind, and within a kind the first rule that matches wins, so
-precedence works like firewall rules. The configuration window needs
-ReaImGui 0.10+; every other action, Apply and Clear included, works
-without it. Your rules live outside Scripts/, so updating never touches
-them.
+- Colour tracks, items, regions and markers by name -- substring, glob or
+  regular expressions.
+- Each object type configured by separate set of rules; first match wins.
+- Configuration stored outside the scripts location, to prevent overwriting
+  on update.
+- Configuration window requires ReaImGui 0.10+.
 
-The scripts install to Scripts/MXM Scripts/MXM_AutoColor/, matching the
-layout of the repository. If you ran one of the 0.9.x pre-releases,
-ReaPack moves the files for you, but REAPER identifies an action by its
-path: toolbar buttons, keyboard shortcuts and custom actions bound to the
-old Scripts/MXM Scripts/Color/MXM_AutoColor/ location have to be pointed
-at the new one.]]></changelog>
+Upgrading from 0.9.x: scripts moved to Scripts/MXM Scripts/MXM_AutoColor/.
+ReaPack relocates the files; toolbar buttons, shortcuts and custom actions
+bound to the old path must be repointed.]]></changelog>
         <source main="main" file="../MXM_AutoColor/MXM_AutoColor_GUI.lua">https://github.com/michal-bartak/Reaper-AutoColor/raw/1.0.0/Reaper/Scripts/MXM_AutoColor/MXM_AutoColor_GUI.lua</source>
         <source main="main" file="../MXM_AutoColor/MXM_AutoColor_AutoToggle.lua">https://github.com/michal-bartak/Reaper-AutoColor/raw/1.0.0/Reaper/Scripts/MXM_AutoColor/MXM_AutoColor_AutoToggle.lua</source>
         <source file="../MXM_AutoColor/MXM_AutoColor_ApplyAll.lua">https://github.com/michal-bartak/Reaper-AutoColor/raw/1.0.0/Reaper/Scripts/MXM_AutoColor/MXM_AutoColor_ApplyAll.lua</source>
@@ -188,6 +180,56 @@ in read-only mode.]]></changelog>
         <source type="data" file="toolbar_icons/150/mxm_toolbar_autocolor_gui.png">https://github.com/michal-bartak/Reaper-AutoColor/raw/1.1.0beta1/Reaper/Data/toolbar_icons/150/mxm_toolbar_autocolor_gui.png</source>
         <source type="data" file="toolbar_icons/200/mxm_toolbar_autocolor.png">https://github.com/michal-bartak/Reaper-AutoColor/raw/1.1.0beta1/Reaper/Data/toolbar_icons/200/mxm_toolbar_autocolor.png</source>
         <source type="data" file="toolbar_icons/200/mxm_toolbar_autocolor_gui.png">https://github.com/michal-bartak/Reaper-AutoColor/raw/1.1.0beta1/Reaper/Data/toolbar_icons/200/mxm_toolbar_autocolor_gui.png</source>
+      </version>
+      <version name="1.1.0beta2" author="Michal MaXyM Bartak" time="2026-10-03T18:00:15Z">
+        <changelog><![CDATA[- Requires Reaper 7.03 or later.
+- Added: track icons support.
+- Added: Children fill per rule selector to tracks (defaults in Options > Folders).
+- Added: new track filters: has an instrument, has a MIDI input, has receives.
+- Added: SWS import.
+- Added: autostart at startup option (configurable in Options > Startup).
+- Fixed: Toolbar buttons toggle without the "already running" prompt.
+- Minor layout changes.
+
+Config file bumped to version 4. Earlier versions of AutoColor will open it
+in read-only mode.]]></changelog>
+        <source main="main" file="../MXM_AutoColor/MXM_AutoColor_GUI.lua">https://github.com/michal-bartak/Reaper-AutoColor/raw/1.1.0beta2/Reaper/Scripts/MXM_AutoColor/MXM_AutoColor_GUI.lua</source>
+        <source main="main" file="../MXM_AutoColor/MXM_AutoColor_AutoToggle.lua">https://github.com/michal-bartak/Reaper-AutoColor/raw/1.1.0beta2/Reaper/Scripts/MXM_AutoColor/MXM_AutoColor_AutoToggle.lua</source>
+        <source file="../MXM_AutoColor/MXM_AutoColor_ApplyAll.lua">https://github.com/michal-bartak/Reaper-AutoColor/raw/1.1.0beta2/Reaper/Scripts/MXM_AutoColor/MXM_AutoColor_ApplyAll.lua</source>
+        <source file="../MXM_AutoColor/MXM_AutoColor_ApplySelection.lua">https://github.com/michal-bartak/Reaper-AutoColor/raw/1.1.0beta2/Reaper/Scripts/MXM_AutoColor/MXM_AutoColor_ApplySelection.lua</source>
+        <source file="../MXM_AutoColor/MXM_AutoColor_ClearColors.lua">https://github.com/michal-bartak/Reaper-AutoColor/raw/1.1.0beta2/Reaper/Scripts/MXM_AutoColor/MXM_AutoColor_ClearColors.lua</source>
+        <source file="../MXM_AutoColor/MXM_AutoColor_Dump.lua">https://github.com/michal-bartak/Reaper-AutoColor/raw/1.1.0beta2/Reaper/Scripts/MXM_AutoColor/MXM_AutoColor_Dump.lua</source>
+        <source file="../MXM_AutoColor/MXM_AutoColor_RunTests.lua">https://github.com/michal-bartak/Reaper-AutoColor/raw/1.1.0beta2/Reaper/Scripts/MXM_AutoColor/MXM_AutoColor_RunTests.lua</source>
+        <source file="../MXM_AutoColor/MXM_AutoColor_Startup.lua">https://github.com/michal-bartak/Reaper-AutoColor/raw/1.1.0beta2/Reaper/Scripts/MXM_AutoColor/MXM_AutoColor_Startup.lua</source>
+        <source file="../MXM_AutoColor/MXM_AutoColor_WhyThisColour.lua">https://github.com/michal-bartak/Reaper-AutoColor/raw/1.1.0beta2/Reaper/Scripts/MXM_AutoColor/MXM_AutoColor_WhyThisColour.lua</source>
+        <source file="../MXM_AutoColor/lib/about.lua">https://github.com/michal-bartak/Reaper-AutoColor/raw/1.1.0beta2/Reaper/Scripts/MXM_AutoColor/lib/about.lua</source>
+        <source file="../MXM_AutoColor/lib/apply.lua">https://github.com/michal-bartak/Reaper-AutoColor/raw/1.1.0beta2/Reaper/Scripts/MXM_AutoColor/lib/apply.lua</source>
+        <source file="../MXM_AutoColor/lib/autoloop.lua">https://github.com/michal-bartak/Reaper-AutoColor/raw/1.1.0beta2/Reaper/Scripts/MXM_AutoColor/lib/autoloop.lua</source>
+        <source file="../MXM_AutoColor/lib/colors.lua">https://github.com/michal-bartak/Reaper-AutoColor/raw/1.1.0beta2/Reaper/Scripts/MXM_AutoColor/lib/colors.lua</source>
+        <source file="../MXM_AutoColor/lib/config.lua">https://github.com/michal-bartak/Reaper-AutoColor/raw/1.1.0beta2/Reaper/Scripts/MXM_AutoColor/lib/config.lua</source>
+        <source file="../MXM_AutoColor/lib/entry.lua">https://github.com/michal-bartak/Reaper-AutoColor/raw/1.1.0beta2/Reaper/Scripts/MXM_AutoColor/lib/entry.lua</source>
+        <source file="../MXM_AutoColor/lib/icons.lua">https://github.com/michal-bartak/Reaper-AutoColor/raw/1.1.0beta2/Reaper/Scripts/MXM_AutoColor/lib/icons.lua</source>
+        <source file="../MXM_AutoColor/lib/json.lua">https://github.com/michal-bartak/Reaper-AutoColor/raw/1.1.0beta2/Reaper/Scripts/MXM_AutoColor/lib/json.lua</source>
+        <source file="../MXM_AutoColor/lib/matcher.lua">https://github.com/michal-bartak/Reaper-AutoColor/raw/1.1.0beta2/Reaper/Scripts/MXM_AutoColor/lib/matcher.lua</source>
+        <source file="../MXM_AutoColor/lib/predicates.lua">https://github.com/michal-bartak/Reaper-AutoColor/raw/1.1.0beta2/Reaper/Scripts/MXM_AutoColor/lib/predicates.lua</source>
+        <source file="../MXM_AutoColor/lib/regex.lua">https://github.com/michal-bartak/Reaper-AutoColor/raw/1.1.0beta2/Reaper/Scripts/MXM_AutoColor/lib/regex.lua</source>
+        <source file="../MXM_AutoColor/lib/rules.lua">https://github.com/michal-bartak/Reaper-AutoColor/raw/1.1.0beta2/Reaper/Scripts/MXM_AutoColor/lib/rules.lua</source>
+        <source file="../MXM_AutoColor/lib/startup.lua">https://github.com/michal-bartak/Reaper-AutoColor/raw/1.1.0beta2/Reaper/Scripts/MXM_AutoColor/lib/startup.lua</source>
+        <source file="../MXM_AutoColor/lib/swsimport.lua">https://github.com/michal-bartak/Reaper-AutoColor/raw/1.1.0beta2/Reaper/Scripts/MXM_AutoColor/lib/swsimport.lua</source>
+        <source file="../MXM_AutoColor/lib/targets.lua">https://github.com/michal-bartak/Reaper-AutoColor/raw/1.1.0beta2/Reaper/Scripts/MXM_AutoColor/lib/targets.lua</source>
+        <source file="../MXM_AutoColor/lib/gui/app.lua">https://github.com/michal-bartak/Reaper-AutoColor/raw/1.1.0beta2/Reaper/Scripts/MXM_AutoColor/lib/gui/app.lua</source>
+        <source file="../MXM_AutoColor/lib/gui/dialog.lua">https://github.com/michal-bartak/Reaper-AutoColor/raw/1.1.0beta2/Reaper/Scripts/MXM_AutoColor/lib/gui/dialog.lua</source>
+        <source file="../MXM_AutoColor/lib/gui/icon_browser.lua">https://github.com/michal-bartak/Reaper-AutoColor/raw/1.1.0beta2/Reaper/Scripts/MXM_AutoColor/lib/gui/icon_browser.lua</source>
+        <source file="../MXM_AutoColor/lib/gui/preview.lua">https://github.com/michal-bartak/Reaper-AutoColor/raw/1.1.0beta2/Reaper/Scripts/MXM_AutoColor/lib/gui/preview.lua</source>
+        <source file="../MXM_AutoColor/lib/gui/rule_table.lua">https://github.com/michal-bartak/Reaper-AutoColor/raw/1.1.0beta2/Reaper/Scripts/MXM_AutoColor/lib/gui/rule_table.lua</source>
+        <source file="../MXM_AutoColor/lib/gui/theme.lua">https://github.com/michal-bartak/Reaper-AutoColor/raw/1.1.0beta2/Reaper/Scripts/MXM_AutoColor/lib/gui/theme.lua</source>
+        <source file="../MXM_AutoColor/lib/gui/window.lua">https://github.com/michal-bartak/Reaper-AutoColor/raw/1.1.0beta2/Reaper/Scripts/MXM_AutoColor/lib/gui/window.lua</source>
+        <source type="data" file="toolbar_icons/mxm_toolbar_autocolor.png">https://github.com/michal-bartak/Reaper-AutoColor/raw/1.1.0beta2/Reaper/Data/toolbar_icons/mxm_toolbar_autocolor.png</source>
+        <source type="data" file="toolbar_icons/mxm_toolbar_autocolor_gui.png">https://github.com/michal-bartak/Reaper-AutoColor/raw/1.1.0beta2/Reaper/Data/toolbar_icons/mxm_toolbar_autocolor_gui.png</source>
+        <source type="data" file="toolbar_icons/150/mxm_toolbar_autocolor.png">https://github.com/michal-bartak/Reaper-AutoColor/raw/1.1.0beta2/Reaper/Data/toolbar_icons/150/mxm_toolbar_autocolor.png</source>
+        <source type="data" file="toolbar_icons/150/mxm_toolbar_autocolor_gui.png">https://github.com/michal-bartak/Reaper-AutoColor/raw/1.1.0beta2/Reaper/Data/toolbar_icons/150/mxm_toolbar_autocolor_gui.png</source>
+        <source type="data" file="toolbar_icons/200/mxm_toolbar_autocolor.png">https://github.com/michal-bartak/Reaper-AutoColor/raw/1.1.0beta2/Reaper/Data/toolbar_icons/200/mxm_toolbar_autocolor.png</source>
+        <source type="data" file="toolbar_icons/200/mxm_toolbar_autocolor_gui.png">https://github.com/michal-bartak/Reaper-AutoColor/raw/1.1.0beta2/Reaper/Data/toolbar_icons/200/mxm_toolbar_autocolor_gui.png</source>
       </version>
     </reapack>
   </category>
