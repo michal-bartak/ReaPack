@@ -332,6 +332,26 @@ updating.]]></changelog>
         <source type="data" file="toolbar_icons/150/mxm_toolbar_list_of_instruments_and_effects.png">https://github.com/michal-bartak/ListOfInstrumentsAndEffects/raw/7abf10a9703637bd1630e42178420e9b80a2e986/Reaper/Data/toolbar_icons/150/mxm_toolbar_list_of_instruments_and_effects.png</source>
         <source type="data" file="toolbar_icons/200/mxm_toolbar_list_of_instruments_and_effects.png">https://github.com/michal-bartak/ListOfInstrumentsAndEffects/raw/7abf10a9703637bd1630e42178420e9b80a2e986/Reaper/Data/toolbar_icons/200/mxm_toolbar_list_of_instruments_and_effects.png</source>
       </version>
+      <version name="3.0.0beta1" author="Michal MaXyM Bartak" time="2026-10-15T08:50:20Z">
+        <changelog><![CDATA[- Requires ReaImGui 0.10 or later.
+- Added: FX on media items; those on inactive takes are listed as offline/inactive.
+- Added: Input FX section, with record input FX on every track.
+- Added: FX inside containers, followed to any depth (REAPER 7.06 or later).
+- Added: About dialog (the ⓘ button).
+- Added: the report opens with the REAPER version.
+- Changed: window rebuilt on ReaImGui; sharp on HiDPI displays, and resizable.
+- Fixed: Markdown tables line up with a long heading and with accented names.
+- Fixed: the report follows the project tab you are looking at.]]></changelog>
+        <source main="main" file="../MXM_ListOfInstrumentsAndEffects/MXM_List of Instruments and Effects.lua">https://github.com/michal-bartak/Reaper-ListOfInstrumentsAndEffects/raw/v3.0.0beta1/Reaper/Scripts/MXM_ListOfInstrumentsAndEffects/MXM_List%20of%20Instruments%20and%20Effects.lua</source>
+        <source file="../MXM_ListOfInstrumentsAndEffects/lib/about.lua">https://github.com/michal-bartak/Reaper-ListOfInstrumentsAndEffects/raw/v3.0.0beta1/Reaper/Scripts/MXM_ListOfInstrumentsAndEffects/lib/about.lua</source>
+        <source file="../MXM_ListOfInstrumentsAndEffects/lib/chunk.lua">https://github.com/michal-bartak/Reaper-ListOfInstrumentsAndEffects/raw/v3.0.0beta1/Reaper/Scripts/MXM_ListOfInstrumentsAndEffects/lib/chunk.lua</source>
+        <source file="../MXM_ListOfInstrumentsAndEffects/lib/report.lua">https://github.com/michal-bartak/Reaper-ListOfInstrumentsAndEffects/raw/v3.0.0beta1/Reaper/Scripts/MXM_ListOfInstrumentsAndEffects/lib/report.lua</source>
+        <source file="../MXM_ListOfInstrumentsAndEffects/lib/scan.lua">https://github.com/michal-bartak/Reaper-ListOfInstrumentsAndEffects/raw/v3.0.0beta1/Reaper/Scripts/MXM_ListOfInstrumentsAndEffects/lib/scan.lua</source>
+        <source file="../MXM_ListOfInstrumentsAndEffects/lib/theme.lua">https://github.com/michal-bartak/Reaper-ListOfInstrumentsAndEffects/raw/v3.0.0beta1/Reaper/Scripts/MXM_ListOfInstrumentsAndEffects/lib/theme.lua</source>
+        <source type="data" file="toolbar_icons/mxm_toolbar_list_of_instruments_and_effects.png">https://github.com/michal-bartak/Reaper-ListOfInstrumentsAndEffects/raw/v3.0.0beta1/Reaper/Data/toolbar_icons/mxm_toolbar_list_of_instruments_and_effects.png</source>
+        <source type="data" file="toolbar_icons/150/mxm_toolbar_list_of_instruments_and_effects.png">https://github.com/michal-bartak/Reaper-ListOfInstrumentsAndEffects/raw/v3.0.0beta1/Reaper/Data/toolbar_icons/150/mxm_toolbar_list_of_instruments_and_effects.png</source>
+        <source type="data" file="toolbar_icons/200/mxm_toolbar_list_of_instruments_and_effects.png">https://github.com/michal-bartak/Reaper-ListOfInstrumentsAndEffects/raw/v3.0.0beta1/Reaper/Data/toolbar_icons/200/mxm_toolbar_list_of_instruments_and_effects.png</source>
+      </version>
     </reapack>
   </category>
 </index>
