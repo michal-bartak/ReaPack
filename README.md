@@ -19,7 +19,7 @@ Updates arrive through ReaPack from then on.
 | Package | What it does | Source |
 |---|---|---|
 | **AutoColor** | Colours tracks, items, regions and markers from their names, using substring, glob or real regular expressions. | [Reaper-AutoColor](https://github.com/michal-bartak/Reaper-AutoColor) |
-| **List of Instruments and Effects** | Lists every plugin used in a project, grouped into categories, and copies the report out as text, Markdown or BBCode. | [ListOfInstrumentsAndEffects](https://github.com/michal-bartak/ListOfInstrumentsAndEffects) |
+| **List of Instruments and Effects** | Lists every plugin used in a project, grouped into categories, and copies the report out as text, Markdown or BBCode. | [Reaper-ListOfInstrumentsAndEffects](https://github.com/michal-bartak/Reaper-ListOfInstrumentsAndEffects) |
 
 ## How this repository works
 
@@ -53,7 +53,20 @@ A source repository can trigger it directly instead, with a
 `contents:write` on this repository held as a secret over there -- a source
 repo's own `GITHUB_TOKEN` cannot reach across.
 
-Adding a script means adding its repository to `SOURCES` in `merge-index.py`
-and re-running it. Duplicate packages across repositories are a hard error.
+### Categories
+
+`reapack-index` takes a package's category from the directory its manifest sits
+in. Rather than have each repository pick that directory by category (`Color/`,
+`Various/`, ...), a repository keeps its manifest in a fixed **`ReaPack/`**
+directory, and `merge-index.py` renames the `ReaPack` category to the one
+`SOURCES` gives for that repository. A repository whose manifest still sits in a
+category directory passes through unchanged.
+
+The category is part of a package's identity in ReaPack -- (index, category,
+package) -- so changing one in `SOURCES` orphans every existing install.
+
+Adding a script means adding its repository and category to `SOURCES` in
+`merge-index.py` and re-running it. Duplicate packages across repositories are a
+hard error.
 
 `index.xml` is generated — don't edit it by hand.

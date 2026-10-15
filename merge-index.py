@@ -8,6 +8,15 @@ index.xml. This script only re-roots their <category> elements under a single
 The <source> URLs inside a generated index are already absolute and point at
 their own repository, so nothing needs rewriting here.
 
+Categories are the one thing set here. reapack-index takes a package's category
+from the directory its manifest sits in, which would make every repository
+choose a manifest directory by category (Color/, Various/, ...). Instead each
+repository may keep its manifest in a fixed ReaPack/ directory, and the
+category that directory produces is renamed to the one SOURCES gives for that
+repository. A source still using a category directory passes through as is.
+Changing a category here moves the package to another identity in ReaPack's
+eyes -- (index, category, package) -- and orphans every existing install.
+
 A source is read from TWO places: its main branch and its newest tag. A beta
 is cut and tagged on a branch before it reaches main, so main alone would
 never publish it; the newest tag alone would miss a hotfix released on main
@@ -17,7 +26,8 @@ by hand would come back from them.
 
     ./merge-index.py            # fetch the sources and rewrite index.xml
     ./merge-index.py --check    # verify index.xml is up to date, write nothing
-    ./merge-index.py a.xml ...  # local files or URLs instead, for testing
+    ./merge-index.py a.xml ...  # local files or URLs instead, for testing;
+                                # a.xml=Various renames its ReaPack category
 """
 
 import html
@@ -32,10 +42,14 @@ from pathlib import Path
 
 INDEX_NAME = "MXM Scripts"
 
-SOURCES = [
-    "michal-bartak/Reaper-AutoColor",
-    "michal-bartak/ListOfInstrumentsAndEffects",
-]
+# repository -> the category its ReaPack/ manifest is listed under
+SOURCES = {
+    "michal-bartak/Reaper-AutoColor": "Color",
+    "michal-bartak/Reaper-ListOfInstrumentsAndEffects": "Various",
+}
+
+# The manifest directory every source may use; see the docstring.
+MANIFEST_DIR = "ReaPack"
 
 RAW = "https://raw.githubusercontent.com/{repo}/{ref}/index.xml"
 
@@ -122,16 +136,28 @@ def union(indexes):
     return root
 
 
-def load(source):
+def recategorise(idx, category):
+    """Rename the category a ReaPack/ manifest produces to the real one. Done
+    to each index BEFORE union(), so a tag indexed while the manifest still sat
+    in a category directory merges into the same package as main."""
+    if category:
+        for cat in idx.findall("category"):
+            if cat.get("name") == MANIFEST_DIR:
+                cat.set("name", category)
+    return idx
+
+
+def load(source, category=None):
     """A source as one <index>: a repository's main plus its newest tag with an
     index, or a single file or URL as given."""
     if "://" in source or not re.fullmatch(r"[\w.-]+/[\w.-]+", source):
-        return source, ET.fromstring(fetch(source))
-    indexes, used = [ET.fromstring(fetch(RAW.format(repo=source, ref="main")))], ["main"]
+        return source, recategorise(ET.fromstring(fetch(source)), category)
+    main = ET.fromstring(fetch(RAW.format(repo=source, ref="main")))
+    indexes, used = [recategorise(main, category)], ["main"]
     for tag in tags(source):
         data = fetch_ref(source, tag)
         if data is not None:
-            indexes.append(ET.fromstring(data))
+            indexes.append(recategorise(ET.fromstring(data), category))
             used.append(tag)
             break
     return f"{source} ({' + '.join(used)})", union(indexes)
@@ -175,8 +201,8 @@ def merge(sources):
     seen = {}                                 # (category, package) -> source url
     installs = {}                             # install path -> (category, package)
 
-    for source in sources:
-        url, src = load(source)
+    for source, category in sources.items():
+        url, src = load(source, category)
         if src.tag != "index":
             raise SystemExit(f"{url}: root element is <{src.tag}>, expected <index>")
 
@@ -223,7 +249,10 @@ def merge(sources):
 
 def main(argv):
     check = "--check" in argv
-    sources = [a for a in argv[1:] if not a.startswith("-")] or SOURCES
+    # A local file or URL given for testing may name its category after a
+    # '=': ./merge-index.py index.xml=Various
+    args = [a for a in argv[1:] if not a.startswith("-")]
+    sources = dict(a.split("=", 1) if "=" in a else (a, None) for a in args) or SOURCES
 
     merged, seen = merge(sources)
     current = OUTPUT.read_bytes() if OUTPUT.exists() else None
